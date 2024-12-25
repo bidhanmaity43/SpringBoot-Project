@@ -1,0 +1,311 @@
+/* Prevent highlighting of text box when clicked */
+input:focus, textarea:focus {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Other styles... */
+
+.error-message {
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+    color: red; /* Default color for error messages */
+}
+
+.success-message {
+    color: green; /* Color for success messages */
+}
+
+
+/* Disable dragging for the content textarea */
+textarea {
+    resize: none; /* Disable resizing */
+    user-drag: none; /* Disable dragging */
+    -webkit-user-drag: none; /* For Safari */
+    width: 100%; /* Set the width to 100% */
+    height: 200px; /* Set the height to a desired value */
+}
+
+/* Styles for the login form */
+body {
+    background: linear-gradient(to bottom, #a9c0e4, #fff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Styles for the admin dashboard */
+body {
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#welcomeMessage {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.options-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center align the options block horizontally */
+  align-items: center; /* Center align the options block vertically */
+}
+
+.option-block {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+  width: 48%;
+}
+
+.option-block h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+}
+
+.container h1 {
+    margin-bottom: 20px;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.container label,
+.container input {
+    margin-bottom: 10px;
+}
+
+.container input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: 1px solid #ccc; /* Add outline to input fields */
+}
+
+.container button {
+    padding: 10px;
+    background: #4caf50;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Styles for the view form */
+body.view {
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 35px;
+}
+
+.container.view {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 150%; /* Adjust the width as needed */
+    max-width: 1500px; /* Increase the maximum width for the "view" page */
+    text-align: center;
+    margin-top: 20px;
+    position: relative; /* Add relative positioning to allow absolute positioning of buttons */
+}
+
+.view h1 {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+
+
+/* Add some spacing between the buttons */
+button#logout-button {
+    left: 60%; /* Adjust the position of the Logout button */
+}
+
+
+
+
+
+.container-common {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    width: 400px;
+    text-align: center;
+}
+/* Add some spacing between the buttons */
+.action-button {
+    margin-right: 40px; /* Adjust the margin to control spacing */
+    margin-left: 40px;
+    padding: 10px;
+    background: #4caf50;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Styles for the comment modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 50%;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #f00;
+}
+
+/* Custom styling for the delete button */
+.custom-delete-button {
+    background-color: red; /* Change the background color to your desired color */
+    color: white; /* Change the text color to make it readable */
+    padding: 5px 10px; /* Adjust padding as needed */
+    border: none; /* Remove any borders */
+    border-radius: 5px; /* Add rounded corners */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    /* Add any other styling you want for the button */
+}
+
+/* Add !important to override other styles if necessary */
+.custom-delete-button {
+    background-color: red !important;
+    color: white !important;
+}
+.container-admin {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    width: 400px;
+    text-align: center;
+    position: relative; /* Add relative positioning to the container */
+}
+
+/* Style the logout button */
+#logout-button-admin {
+    position: absolute; /* Use absolute positioning */
+    bottom: 14px; /* Adjust the vertical position as needed */
+    left: 42%; /* Center the button horizontally */
+    transform: translateX(-50%); /* Center the button horizontally */
+    padding: 10px;
+    background: #4caf50;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    z-index: 1; /* Ensure the button is above other content */
+}
+
+.container-common {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    width: 400px;
+    text-align: center;
+    position: relative; /* Add relative positioning to the container */
+}
+
+/* Style the logout button */
+#logout-button-user {
+    position: absolute; /* Use absolute positioning */
+    bottom: 20px; /* Adjust the vertical position as needed */
+    left: 50%; /* Center the button horizontally */
+    transform: translateX(-50%); /* Center the button horizontally */
+    padding: 10px;
+    background: #4caf50;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    z-index: 1; /* Ensure the button is above other content */
+}
+
+#logout-button-user:hover {
+    background: #45a049;
+}
+
+
+#logout-button-admin:hover {
+    background: #45a049;
+}

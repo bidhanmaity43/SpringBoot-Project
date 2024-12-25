@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>PostController.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+PostController.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.myblog8.controller</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">com.myblog8.payload.PostDto</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.myblog8.payload.PostResponse</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.myblog8.service.PostService</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.springframework.http.HttpStatus</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.springframework.http.ResponseEntity</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.springframework.validation.BindingResult</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.springframework.web.bind.annotation.*</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">javax.validation.Valid</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.List</span><span class="s0">;</span>
+
+<span class="s1">@RestController</span>
+<span class="s1">@RequestMapping(value = </span><span class="s2">&quot;/api/post&quot;</span><span class="s1">)</span>
+<span class="s0">public class </span><span class="s1">PostController {</span>
+
+    <span class="s0">private </span><span class="s1">PostService postService</span><span class="s0">;</span>
+
+    <span class="s0">public </span><span class="s1">PostController(PostService postService) {</span>
+
+        <span class="s0">this</span><span class="s1">.postService = postService</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// http://localhost:8080/api/post</span>
+
+    <span class="s1">@PostMapping</span>
+    <span class="s0">public </span><span class="s1">ResponseEntity&lt;?&gt; savePost(@Valid @RequestBody PostDto postDto</span><span class="s0">, </span><span class="s1">BindingResult result) {</span>
+        <span class="s0">if</span><span class="s1">(result.hasErrors()){</span>
+            <span class="s0">return new </span><span class="s1">ResponseEntity&lt;&gt;(result.getFieldError().getDefaultMessage()</span><span class="s0">,</span><span class="s1">HttpStatus.INTERNAL_SERVER_ERROR)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s1">PostDto dto = postService.savePost(postDto)</span><span class="s0">;</span>
+        <span class="s0">return new </span><span class="s1">ResponseEntity&lt;&gt;(dto</span><span class="s0">, </span><span class="s1">HttpStatus.CREATED)</span><span class="s0">;</span><span class="s3">//201</span>
+    <span class="s1">}</span>
+    <span class="s3">// http://localhost:8080/api/post?pageNo=0&amp;pageSize=5</span>
+    <span class="s1">@GetMapping</span>
+    <span class="s0">public </span><span class="s1">PostResponse getPost(</span>
+            <span class="s1">@RequestParam(value = </span><span class="s2">&quot;pageNo&quot;</span><span class="s0">, </span><span class="s1">defaultValue=</span><span class="s2">&quot;0&quot;</span><span class="s0">,</span><span class="s1">required = </span><span class="s0">false</span><span class="s1">)</span><span class="s0">int </span><span class="s1">pageNo</span><span class="s0">,</span>
+            <span class="s1">@RequestParam(value = </span><span class="s2">&quot;pageSize&quot;</span><span class="s0">, </span><span class="s1">defaultValue=</span><span class="s2">&quot;3&quot;</span><span class="s0">,</span><span class="s1">required = </span><span class="s0">false</span><span class="s1">)</span><span class="s0">int </span><span class="s1">pageSize</span><span class="s0">,</span>
+            <span class="s1">@RequestParam(value = </span><span class="s2">&quot;sortBy&quot;</span><span class="s0">, </span><span class="s1">defaultValue=</span><span class="s2">&quot;id&quot;</span><span class="s0">,</span><span class="s1">required = </span><span class="s0">false</span><span class="s1">)String sortBy</span><span class="s0">,</span>
+            <span class="s1">@RequestParam(value = </span><span class="s2">&quot;sortDir&quot;</span><span class="s0">, </span><span class="s1">defaultValue=</span><span class="s2">&quot;asc&quot;</span><span class="s0">,</span><span class="s1">required = </span><span class="s0">false</span><span class="s1">)String sortDir</span>
+    <span class="s1">) {</span>
+        <span class="s1">PostResponse postResponse = postService.getPost(pageNo</span><span class="s0">,</span><span class="s1">pageSize</span><span class="s0">,</span><span class="s1">sortBy</span><span class="s0">,</span><span class="s1">sortDir)</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">postResponse</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@DeleteMapping(</span><span class="s2">&quot;/{id}&quot;</span><span class="s1">)</span>
+    <span class="s0">public </span><span class="s1">ResponseEntity&lt;String&gt; deletePost(@PathVariable(</span><span class="s2">&quot;id&quot;</span><span class="s1">) </span><span class="s0">long </span><span class="s1">id) {</span>
+        <span class="s1">postService.deletePost(id)</span><span class="s0">;</span>
+        <span class="s0">return new </span><span class="s1">ResponseEntity&lt;&gt;(</span><span class="s2">&quot;Post is deleted&quot;</span><span class="s0">, </span><span class="s1">HttpStatus.OK)</span><span class="s0">; </span><span class="s3">//200</span>
+    <span class="s1">}</span>
+
+    <span class="s3">//http://localhost:8080/api/post/1</span>
+    <span class="s1">@PutMapping(</span><span class="s2">&quot;/{id}&quot;</span><span class="s1">)</span>
+    <span class="s0">public </span><span class="s1">ResponseEntity&lt;PostDto&gt; updatePost(@PathVariable(</span><span class="s2">&quot;id&quot;</span><span class="s1">) </span><span class="s0">long </span><span class="s1">id</span><span class="s0">, </span><span class="s1">@RequestBody PostDto postDto) {</span>
+        <span class="s1">PostDto dto = postService.updatePost(id</span><span class="s0">, </span><span class="s1">postDto)</span><span class="s0">;</span>
+        <span class="s0">return new </span><span class="s1">ResponseEntity&lt;&gt;(dto</span><span class="s0">, </span><span class="s1">HttpStatus.OK)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s3">//http://localhost:8080/api/post/1</span>
+    <span class="s1">@GetMapping(</span><span class="s2">&quot;/{id}&quot;</span><span class="s1">)</span>
+    <span class="s0">public </span><span class="s1">ResponseEntity&lt;PostDto&gt; getPostById(@PathVariable(</span><span class="s2">&quot;id&quot;</span><span class="s1">) </span><span class="s0">long </span><span class="s1">id) {</span>
+        <span class="s1">PostDto dto = postService.getPostById(id)</span><span class="s0">;</span>
+        <span class="s0">return new </span><span class="s1">ResponseEntity&lt;&gt;(dto</span><span class="s0">, </span><span class="s1">HttpStatus.OK)</span><span class="s0">;</span>
+
+    <span class="s1">}</span>
+
+<span class="s1">}</span></pre>
+</body>
+</html>
